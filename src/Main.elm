@@ -19,4 +19,4 @@ main =
 header : Html a
 header =
     h1 []
-        [ text "Home" ]
+        [ text "Orlando Indie Hackers" ]
