@@ -4,6 +4,9 @@ module Main exposing (main)
 
 import Html exposing (..)
 import Html.Attributes
+import Icon
+import Svg
+import Svg.Attributes
 
 
 
@@ -79,10 +82,13 @@ rsvpButton : Html a
 rsvpButton =
     div [ Html.Attributes.class "mt-12" ]
         [ a
-            [ Html.Attributes.class "bg-indigo-700 font-semibold hover:bg-indigo-900 px-12 py-4 rounded-full text-xl text-white uppercase"
+            [ Html.Attributes.class "bg-indigo-700 font-semibold hover:bg-indigo-900 pl-8 pr-10 py-4 rounded-full text-xl text-white uppercase"
             , Html.Attributes.href "https://www.meetup.com/orlando-indie-hackers/events"
             ]
-            [ text "RSVP on Meetup" ]
+            [ span [ Html.Attributes.class "text-red-500" ]
+                [ Icon.meetup ]
+            , span [] [ text "RSVP on Meetup" ]
+            ]
         ]
 
 
@@ -90,20 +96,27 @@ newsletterButton : Html a
 newsletterButton =
     div [ Html.Attributes.class "mt-12" ]
         [ a
-            [ Html.Attributes.class "bg-gray-600 font-semibold hover:bg-indigo-700 px-12 py-4 rounded-full text-xl text-white uppercase"
+            [ Html.Attributes.class "bg-gray-600 font-semibold hover:bg-indigo-700 pl-8 pr-8 py-4 rounded-full text-xl text-white uppercase"
             , Html.Attributes.href "https://convertkit.com"
             ]
-            [ text "Newsletter Sign-up" ]
+            [ span [ Html.Attributes.class "text-white" ]
+                [ Icon.email ]
+            , span [] [ text "Newsletter Sign-up" ]
+            ]
         ]
+
 
 contact : Html a
 contact =
     div [ Html.Attributes.class "mt-8" ]
         [ a [ Html.Attributes.href "https://twitter.com/bijanbwb" ]
-            [ text "Twitter" ]
+            [ Icon.twitter ]
         , a [ Html.Attributes.href "mailto:bijanbwb@gmail.com" ]
-            [ text "Email" ]
+            [ Icon.email ]
+        , a [ Html.Attributes.href "https://github.com/orlando-indie-hackers" ]
+            [ Icon.github ]
         ]
+
 
 emoji : Html a
 emoji =
@@ -126,7 +139,7 @@ sidebar =
 image : Html a
 image =
     img
-        [ Html.Attributes.class "h-screen"
-        , Html.Attributes.src "../wall-of-products.jpg"
+        [ Html.Attributes.class "h-screen object-cover"
+        , Html.Attributes.src "https://createwithelm.s3.amazonaws.com/indie-hackers/wall-of-products.jpg"
         ]
         []

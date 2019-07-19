@@ -7,7 +7,7 @@
 /* Animation */
 
 .rocket {
-  animation: blastOff 3s ease infinite;
+  animation: blastOff 3s ease 1;
 }
 
 @keyframes blastOff {

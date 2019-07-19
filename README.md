@@ -21,3 +21,7 @@ Feel free to
 if you find a bug. Or you can
 [create a pull request](https://github.com/orlando-indie-hackers/home/pulls)
 if you want to contribute!
+
+## Attributions
+
+SVG icons provided by [Font Awesome](https://fontawesome.com/license).
