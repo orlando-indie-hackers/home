@@ -1,3 +1,17 @@
+/* Tailwind CSS */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Animation */
+
+.rocket {
+  animation: blastOff 3s ease infinite;
+}
+
+@keyframes blastOff {
+  0% { opacity: 1; }
+  30% { opacity: .75; transform: translateX(150px) translateY(-150px); }
+  100% { opacity: .25; transform: translateX(1000px) translateY(-1000px); }
+}

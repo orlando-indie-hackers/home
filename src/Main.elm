@@ -38,8 +38,11 @@ content =
 
 header : Html a
 header =
-    h1 [ Html.Attributes.class "font-black leading-none text-6xl" ]
-        [ text "Orlando Indie Hackers" ]
+    h1 [ Html.Attributes.class "font-black leading-none text-5xl" ]
+        [ span [] [ text "Orlando" ]
+        , br [] []
+        , span [] [ text "Indie Hackers" ]
+        ]
 
 
 subheader : Html a
@@ -95,7 +98,7 @@ newsletterButton =
 
 emoji : Html a
 emoji =
-    div [ Html.Attributes.class "mt-8" ]
+    div [ Html.Attributes.class "mt-8 rocket" ]
         [ span [ Html.Attributes.class "text-6xl" ]
             [ text "🚀" ]
         ]
