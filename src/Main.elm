@@ -31,6 +31,7 @@ content =
             , next
             , rsvpButton
             , newsletterButton
+            , contact
             , emoji
             ]
         ]
@@ -95,6 +96,14 @@ newsletterButton =
             [ text "Newsletter Sign-up" ]
         ]
 
+contact : Html a
+contact =
+    div [ Html.Attributes.class "mt-8" ]
+        [ a [ Html.Attributes.href "https://twitter.com/bijanbwb" ]
+            [ text "Twitter" ]
+        , a [ Html.Attributes.href "mailto:bijanbwb@gmail.com" ]
+            [ text "Email" ]
+        ]
 
 emoji : Html a
 emoji =
