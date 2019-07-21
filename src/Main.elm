@@ -5,8 +5,6 @@ module Main exposing (main)
 import Html exposing (..)
 import Html.Attributes
 import Icon
-import Svg
-import Svg.Attributes
 
 
 
@@ -53,6 +51,7 @@ content =
             , next
             , rsvpButton
             , newsletterButton
+            , description
             , contact
             , emoji
             ]
@@ -125,6 +124,22 @@ newsletterButton =
                 [ Icon.email ]
             , span []
                 [ text "Newsletter Sign-up" ]
+            ]
+        ]
+
+
+
+-- DESCRIPTION
+
+
+description : Html a
+description =
+    div [ Html.Attributes.class "mt-10" ]
+        [ ul [ Html.Attributes.class "list-disc list-inside" ]
+            [ li [ Html.Attributes.class "leading-tight" ]
+                [ text "🚀 If you're an aspiring entrepreneur or building a side project, join us to share what you're working on and get feedback and encouragement." ]
+            , li [ Html.Attributes.class "leading-tight mt-2" ]
+                [ text "📈 If you're already running a profitable business, come share your story and your experience as you continue growing your business." ]
             ]
         ]
 
