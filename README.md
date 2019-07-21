@@ -14,6 +14,14 @@ $ parcel index.html
 Server running at http://localhost:1234
 ```
 
+## Deployment
+
+```shell
+$ parcel build index.html --public-url ./
+$ open dist/index.html
+$ git subtree push --prefix dist origin gh-pages
+```
+
 ## Contributing
 
 Feel free to
