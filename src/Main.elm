@@ -2,8 +2,10 @@ module Main exposing (main)
 
 -- IMPORTS
 
+import Browser
 import Html exposing (..)
 import Html.Attributes
+import Html.Events
 import Icon
 
 
@@ -11,11 +13,73 @@ import Icon
 -- MAIN
 
 
-main : Html a
+main : Program () Model Msg
 main =
+    Browser.element
+        { init = init
+        , update = update
+        , subscriptions = subscriptions
+        , view = view
+        }
+
+
+
+-- MODEL
+
+
+type alias Model =
+    { invokedFunTimes : Bool
+    }
+
+
+initialModel : Model
+initialModel =
+    { invokedFunTimes = False
+    }
+
+
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( initialModel
+    , Cmd.none
+    )
+
+
+
+-- UPDATE
+
+
+type Msg
+    = UserClickedEmoji
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        UserClickedEmoji ->
+            ( { model | invokedFunTimes = True }
+            , Cmd.none
+            )
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
+
+
+
+-- VIEW
+
+
+view : Model -> Html Msg
+view model =
     div [ Html.Attributes.class "flex flex-row-reverse flex-wrap" ]
         [ splash
-        , content
+        , content model
         ]
 
 
@@ -42,8 +106,8 @@ image =
 -- CONTENT
 
 
-content : Html a
-content =
+content : Model -> Html Msg
+content { invokedFunTimes } =
     div [ Html.Attributes.class "bg-white sm:h-screen sm:w-1/2 w-full" ]
         [ div [ Html.Attributes.class "px-16 pt-16" ]
             [ header
@@ -53,7 +117,7 @@ content =
             , newsletterButton
             , description
             , contact
-            , emoji
+            , emoji invokedFunTimes
             ]
         ]
 
@@ -174,9 +238,13 @@ contact =
 -- FUN
 
 
-emoji : Html a
-emoji =
-    div [ Html.Attributes.class "mt-8 rocket" ]
+emoji : Bool -> Html Msg
+emoji invokedFunTimes =
+    div
+        [ Html.Attributes.class "cursor-pointer mt-8"
+        , Html.Attributes.classList [ ( "rocket", invokedFunTimes ) ]
+        , Html.Events.onClick UserClickedEmoji
+        ]
         [ span [ Html.Attributes.class "text-6xl" ]
             [ text "🚀" ]
         ]
