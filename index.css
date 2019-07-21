@@ -15,3 +15,9 @@
   30% { opacity: .75; transform: translateX(150px) translateY(-150px); }
   100% { opacity: .25; transform: translateX(1000px) translateY(-1000px); }
 }
+
+/* Text Selection */
+
+::selection {
+  background: #feb2b2;
+}
