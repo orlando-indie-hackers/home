@@ -168,6 +168,7 @@ rsvpButton =
         [ a
             [ Html.Attributes.class "bg-indigo-700 flex flex-no-wrap font-semibold hover:bg-indigo-900 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
             , Html.Attributes.href "https://www.meetup.com/orlando-indie-hackers/events"
+            , Html.Attributes.target "_blank"
             ]
             [ span [ Html.Attributes.class "mr-1 text-red-500" ]
                 [ Icon.meetup ]
@@ -181,8 +182,10 @@ newsletterButton : Html a
 newsletterButton =
     div [ Html.Attributes.class "mt-6" ]
         [ a
-            [ Html.Attributes.class "bg-gray-600 flex flex-no-wrap font-semibold hover:bg-indigo-700 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
-            , Html.Attributes.href "https://convertkit.com"
+            [ Html.Attributes.attribute "data-formkit-toggle" "a233cf9015"
+            , Html.Attributes.class "bg-gray-600 flex flex-no-wrap font-semibold hover:bg-indigo-700 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
+            , Html.Attributes.href "https://pages.convertkit.com/a233cf9015/d07126d248"
+            , Html.Attributes.target "_blank"
             ]
             [ span [ Html.Attributes.class "mr-1 text-white" ]
                 [ Icon.email ]
