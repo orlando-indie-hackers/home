@@ -109,7 +109,7 @@ image =
 content : Model -> Html Msg
 content { invokedFunTimes } =
     div [ Html.Attributes.class "bg-white sm:h-screen sm:w-1/2 w-full" ]
-        [ div [ Html.Attributes.class "px-16 pt-16" ]
+        [ div [ Html.Attributes.class "px-8 pt-6 sm:px-16 sm:pt-16" ]
             [ header
             , subheader
             , next
@@ -133,7 +133,7 @@ header =
 
 subheader : Html a
 subheader =
-    div [ Html.Attributes.class "mt-8" ]
+    div [ Html.Attributes.class "max-w-md mt-8" ]
         [ p [ Html.Attributes.class "font-medium" ]
             [ span [] [ text "Orlando's official " ]
             , a
@@ -198,7 +198,7 @@ newsletterButton =
 
 description : Html a
 description =
-    div [ Html.Attributes.class "mt-10" ]
+    div [ Html.Attributes.class "max-w-md mt-10" ]
         [ ul [ Html.Attributes.class "list-disc list-inside" ]
             [ li [ Html.Attributes.class "leading-tight" ]
                 [ text "🚀 If you're an aspiring entrepreneur or building a side project, join us to share what you're working on and get feedback and encouragement." ]
