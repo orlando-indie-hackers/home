@@ -154,7 +154,7 @@ next =
         [ strong [ Html.Attributes.class "" ]
             [ text "Next Meeting:" ]
         , p [ Html.Attributes.class "italic" ]
-            [ text "Monday August 12th // 7pm - 9pm // @ TBD" ]
+            [ text "Monday August 12th // 6pm - 8pm // @ TBD" ]
         ]
 
 
