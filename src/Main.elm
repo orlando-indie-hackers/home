@@ -169,7 +169,7 @@ next { date, time, location } =
         ( venue, link ) =
             location
     in
-    div [ Html.Attributes.class "mt-8" ]
+    div [ Html.Attributes.class "max-w-sm mt-8" ]
         [ strong []
             [ text "Next Meeting:" ]
         , p [ Html.Attributes.class "italic" ]
