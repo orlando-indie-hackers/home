@@ -7,6 +7,8 @@ import Html exposing (..)
 import Html.Attributes
 import Html.Events
 import Icon
+import Svg exposing (Svg)
+import Svg.Attributes
 
 
 
@@ -27,14 +29,27 @@ main =
 -- MODEL
 
 
+type alias Meeting =
+    { date : String
+    , time : String
+    , location : ( String, String )
+    }
+
+
 type alias Model =
     { invokedFunTimes : Bool
+    , nextMeeting : Meeting
     }
 
 
 initialModel : Model
 initialModel =
     { invokedFunTimes = False
+    , nextMeeting =
+        { date = "Monday August 12th"
+        , time = "6pm - 8pm"
+        , location = ( "Venture X Downtown Orlando", "https://venturex.com/locations/florida/downtown-orlando/" )
+        }
     }
 
 
@@ -107,12 +122,12 @@ image =
 
 
 content : Model -> Html Msg
-content { invokedFunTimes } =
+content { invokedFunTimes, nextMeeting } =
     div [ Html.Attributes.class "bg-white sm:h-screen sm:w-1/2 w-full" ]
         [ div [ Html.Attributes.class "px-8 pt-6 sm:px-16 sm:pt-16" ]
             [ header
             , subheader
-            , next
+            , next nextMeeting
             , rsvpButton
             , newsletterButton
             , description
@@ -135,7 +150,7 @@ subheader : Html a
 subheader =
     div [ Html.Attributes.class "max-w-md mt-8" ]
         [ p [ Html.Attributes.class "font-medium" ]
-            [ span [] [ text "Orlando's official " ]
+            [ span [] [ text "Orlando's " ]
             , a
                 [ Html.Attributes.class "border-solid border-b-4 border-red-500 hover:border-red-300"
                 , Html.Attributes.href "https://indiehackers.com"
@@ -148,13 +163,31 @@ subheader =
         ]
 
 
-next : Html a
-next =
+next : Meeting -> Html a
+next { date, time, location } =
+    let
+        ( venue, link ) =
+            location
+    in
     div [ Html.Attributes.class "mt-8" ]
-        [ strong [ Html.Attributes.class "" ]
+        [ strong []
             [ text "Next Meeting:" ]
         , p [ Html.Attributes.class "italic" ]
-            [ text "Monday August 12th // 6pm - 8pm // @ TBD" ]
+            [ span [] [ text date ]
+            , span [] [ text " // " ]
+            , span [] [ text time ]
+            , span [] [ text " // @ " ]
+            , span []
+                [ a
+                    [ Html.Attributes.alt venue
+                    , Html.Attributes.class "border-solid border-b-4 border-red-300 hover:border-red-500"
+                    , Html.Attributes.href link
+                    , Html.Attributes.target "_blank"
+                    , Html.Attributes.title venue
+                    ]
+                    [ text venue ]
+                ]
+            ]
         ]
 
 
@@ -166,9 +199,11 @@ rsvpButton : Html a
 rsvpButton =
     div [ Html.Attributes.class "mt-10" ]
         [ a
-            [ Html.Attributes.class "bg-indigo-700 flex flex-no-wrap font-semibold hover:bg-indigo-900 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
+            [ Html.Attributes.alt "Meetup.com"
+            , Html.Attributes.class "bg-indigo-700 flex flex-no-wrap font-semibold hover:bg-indigo-900 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
             , Html.Attributes.href "https://www.meetup.com/orlando-indie-hackers/events"
             , Html.Attributes.target "_blank"
+            , Html.Attributes.title "Visit our Meetup.com page!"
             ]
             [ span [ Html.Attributes.class "mr-1 text-red-500" ]
                 [ Icon.meetup ]
@@ -183,11 +218,13 @@ newsletterButton =
     div [ Html.Attributes.class "mt-6" ]
         [ a
             [ Html.Attributes.attribute "data-formkit-toggle" "a233cf9015"
-            , Html.Attributes.class "bg-gray-600 flex flex-no-wrap font-semibold hover:bg-indigo-700 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
+            , Html.Attributes.alt "Newsletter Sign-up"
+            , Html.Attributes.class "bg-indigo-500 flex flex-no-wrap font-semibold hover:bg-indigo-700 items-center justify-center max-w-sm px-10 py-4 rounded-full text-xl text-white uppercase"
             , Html.Attributes.href "https://pages.convertkit.com/a233cf9015/d07126d248"
             , Html.Attributes.target "_blank"
+            , Html.Attributes.title "Sign up for occasional email updates!"
             ]
-            [ span [ Html.Attributes.class "mr-1 text-white" ]
+            [ span [ Html.Attributes.class "mr-2 text-white" ]
                 [ Icon.email ]
             , span []
                 [ text "Newsletter Sign-up" ]
@@ -208,6 +245,27 @@ description =
             , li [ Html.Attributes.class "leading-tight mt-2" ]
                 [ text "📈 If you're already running a profitable business, come share your story and your experience as you continue growing your business." ]
             ]
+        , p [ Html.Attributes.class "italic mt-6" ]
+            [ span [] [ text "Stop by to visit" ]
+            , span [] [ mickey ]
+            , span [] [ text " and stay for the community!" ]
+            ]
+        ]
+
+
+mickey : Svg msg
+mickey =
+    Html.span [ Html.Attributes.title "Mickey Mouse" ]
+        [ Svg.svg
+            [ Svg.Attributes.class "inline ml-1 -mr-1"
+            , Svg.Attributes.fill "black"
+            , Svg.Attributes.width "40"
+            , Svg.Attributes.height "40"
+            , Svg.Attributes.viewBox "0 0 2000 2000"
+            ]
+            [ Svg.path [ Svg.Attributes.d "m1621.5 748.5c14.3 124.7-98 245.6-236.8 240.9-21.6-.7-23.1 4.2-16.3 23.6 84.1 240.8-69.5 496.6-319.7 542.3-290.1 52.9-571.6-225.1-461.7-545.3 7.4-21.4.3-21.5-17-21.3-128 1.6-223.4-76.6-244-199-20.8-123.5 71.6-269.1 191.9-305.7 56.7-17.2 112.3-23.9 170.1-5.4 108 34.6 171.5 129.4 163.8 247.7-1.8 27.5-1.8 27.5 24.7 21.1 65.4-15.9 130.9-16.2 196.5-1.2 27.4 6.3 28.2 6.2 25.9-23-4.9-63.9 8.9-123.4 51.6-171.4 68.3-76.9 154.5-100.3 254.4-75.4 95.4 23.8 160.9 81.5 198.7 171.4 14.1 33.4 23.3 67.8 17.9 100.7z" ]
+                []
+            ]
         ]
 
 
@@ -217,21 +275,27 @@ description =
 
 contact : Html a
 contact =
-    div [ Html.Attributes.class "mt-10" ]
+    div [ Html.Attributes.class "mt-8" ]
         [ a
-            [ Html.Attributes.class "mr-2 hover:text-blue-300"
+            [ Html.Attributes.alt "Twitter"
+            , Html.Attributes.class "mr-2 hover:text-blue-300"
             , Html.Attributes.href "https://twitter.com/bijanbwb"
+            , Html.Attributes.title "Say hi on Twitter!"
             ]
             [ Icon.twitter
             ]
         , a
-            [ Html.Attributes.class "mr-2 hover:text-pink-300"
+            [ Html.Attributes.alt "Email"
+            , Html.Attributes.class "mr-2 hover:text-pink-300"
             , Html.Attributes.href "mailto:bijanbwb@gmail.com"
+            , Html.Attributes.title "Say hello via email!"
             ]
             [ Icon.email ]
         , a
-            [ Html.Attributes.class "mr-2 hover:text-gray-300"
+            [ Html.Attributes.alt "GitHub"
+            , Html.Attributes.class "mr-2 hover:text-gray-300"
             , Html.Attributes.href "https://github.com/orlando-indie-hackers"
+            , Html.Attributes.title "View our GitHub org!"
             ]
             [ Icon.github ]
         ]
