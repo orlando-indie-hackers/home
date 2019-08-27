@@ -46,9 +46,9 @@ initialModel : Model
 initialModel =
     { invokedFunTimes = False
     , nextMeeting =
-        { date = "Late September"
+        { date = "September 16th"
         , time = "6pm - 8pm"
-        , location = ( "Location TBD", "#link-coming-soon" )
+        , location = ( "Venture X", "https://venturex.com/" )
         }
     }
 
