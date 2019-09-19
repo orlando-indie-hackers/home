@@ -5072,12 +5072,12 @@ var elm$core$Set$toList = function (_n0) {
 	return elm$core$Dict$keys(dict);
 };
 var author$project$Main$initialModel = {
-	invokedFunTimes: false,
 	nextMeeting: {
-		date: 'Late September',
-		location: _Utils_Tuple2('Location TBD', '#link-coming-soon'),
+		date: 'Late October',
+		location: _Utils_Tuple2('TBD', '#'),
 		time: '6pm - 8pm'
-	}
+	},
+	rocketEmojiBlastOff: false
 };
 var elm$core$Basics$True = {$: 'True'};
 var elm$core$Result$isOk = function (result) {
@@ -5488,7 +5488,7 @@ var author$project$Main$update = F2(
 		return _Utils_Tuple2(
 			_Utils_update(
 				model,
-				{invokedFunTimes: true}),
+				{rocketEmojiBlastOff: true}),
 			elm$core$Platform$Cmd$none);
 	});
 var elm$core$Basics$identity = function (x) {
@@ -5827,7 +5827,7 @@ var elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		elm$json$Json$Decode$succeed(msg));
 };
-var author$project$Main$emoji = function (invokedFunTimes) {
+var author$project$Main$emoji = function (rocketEmojiBlastOff) {
 	return A2(
 		elm$html$Html$div,
 		_List_fromArray(
@@ -5836,7 +5836,7 @@ var author$project$Main$emoji = function (invokedFunTimes) {
 				elm$html$Html$Attributes$classList(
 				_List_fromArray(
 					[
-						_Utils_Tuple2('rocket', invokedFunTimes)
+						_Utils_Tuple2('rocket', rocketEmojiBlastOff)
 					])),
 				elm$html$Html$Events$onClick(author$project$Main$UserClickedEmoji)
 			]),
@@ -6093,7 +6093,7 @@ var author$project$Main$subheader = A2(
 				]))
 		]));
 var author$project$Main$content = function (_n0) {
-	var invokedFunTimes = _n0.invokedFunTimes;
+	var rocketEmojiBlastOff = _n0.rocketEmojiBlastOff;
 	var nextMeeting = _n0.nextMeeting;
 	return A2(
 		elm$html$Html$div,
@@ -6118,7 +6118,7 @@ var author$project$Main$content = function (_n0) {
 						author$project$Main$newsletterButton,
 						author$project$Main$description,
 						author$project$Main$contact,
-						author$project$Main$emoji(invokedFunTimes)
+						author$project$Main$emoji(rocketEmojiBlastOff)
 					]))
 			]));
 };
@@ -10859,7 +10859,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59357" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
