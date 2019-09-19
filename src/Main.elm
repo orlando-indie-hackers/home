@@ -37,18 +37,18 @@ type alias Meeting =
 
 
 type alias Model =
-    { invokedFunTimes : Bool
+    { rocketEmojiBlastOff : Bool
     , nextMeeting : Meeting
     }
 
 
 initialModel : Model
 initialModel =
-    { invokedFunTimes = False
+    { rocketEmojiBlastOff = False
     , nextMeeting =
-        { date = "September 17th"
+        { date = "Late October"
         , time = "6pm - 8pm"
-        , location = ( "Venture X", "https://venturex.com/locations/florida/downtown-orlando" )
+        , location = ( "TBD", "#" )
         }
     }
 
@@ -72,7 +72,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UserClickedEmoji ->
-            ( { model | invokedFunTimes = True }
+            ( { model | rocketEmojiBlastOff = True }
             , Cmd.none
             )
 
@@ -122,7 +122,7 @@ image =
 
 
 content : Model -> Html Msg
-content { invokedFunTimes, nextMeeting } =
+content { rocketEmojiBlastOff, nextMeeting } =
     div [ Html.Attributes.class "bg-white sm:h-screen sm:w-1/2 w-full" ]
         [ div [ Html.Attributes.class "px-8 pt-6 sm:px-16 sm:pt-16" ]
             [ header
@@ -132,7 +132,7 @@ content { invokedFunTimes, nextMeeting } =
             , newsletterButton
             , description
             , contact
-            , emoji invokedFunTimes
+            , emoji rocketEmojiBlastOff
             ]
         ]
 
@@ -306,10 +306,10 @@ contact =
 
 
 emoji : Bool -> Html Msg
-emoji invokedFunTimes =
+emoji rocketEmojiBlastOff =
     div
         [ Html.Attributes.class "cursor-pointer mt-8"
-        , Html.Attributes.classList [ ( "rocket", invokedFunTimes ) ]
+        , Html.Attributes.classList [ ( "rocket", rocketEmojiBlastOff ) ]
         , Html.Events.onClick UserClickedEmoji
         ]
         [ span [ Html.Attributes.class "text-6xl" ]
